@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parabéns</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      overflow: hidden; 
+    }
+    .message {
+      text-align: center;
+      font-size: 1.5em;
+      position: absolute; 
+    }
+    .image {
+      position: absolute;
+      width: 153px; 
+      animation: spin 5s linear infinite; 
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message"></div>
+
+
+  <audio autoplay>
+    <source src="estourado.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const player = urlParams.get('player');
+    const time = urlParams.get('time');
+
+    const messageDiv = document.querySelector('.message');
+    messageDiv.innerHTML = `Parabéns, ${player}! Seu tempo foi de: ${time} segundos.`;
+
+    const images = [
+      'cachorroxalxixa.png',
+      'corinthians.png',
+      'felipeneto.png',
+      'giovannabrranca.png',
+      'hulk.png',
+      'LG.png',
+      'loremipsum.png',
+      'lugabyh.png',
+      'ovoroblox.png',
+      'muitoobrigado.png'
+    ];
+
+    const createRandomImage = () => {
+      const img = document.createElement('img');
+      img.src = images[Math.floor(Math.random() * images.length)];
+      img.className = 'image';
+      img.style.top = `${Math.random() * 100}vh`; // Posição vertical aleatória
+      img.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+      document.body.appendChild(img);
+    }
+
+    // Cria 10 imagens aleatórias
+    for (let i = 0; i < 10; i++) {
+      createRandomImage();
+    }
+  </script>
+
+</body>
+</html>
